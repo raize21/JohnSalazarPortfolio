@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="style.css">
+    <title>John Albert Salazar - Portfolio</title>
+</head>
+<body>
+    <nav>
+        <div class="logo" data-aos="zoom-in" data-aos-duration="1500">
+            John <span>Salazar</span>
+        </div>
+        <div class="nav-container">
+            <div class="links">
+                <a href="#home" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">Home</a>
+                <a href="#skills" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">Skills</a>
+                <a href="#about" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">About</a>
+                <a href="#projects" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400">Projects</a>
+                <a href="#contact" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500">Contact</a>
+                <button onclick="toggleDarkMode()" class="dark-toggle">
+    <i id="theme-icon" class="fa-solid fa-moon"></i>
+</button>
+</button>
+            </div>
+        </div>
+        <i class="fa-solid fa-bars hamburg" onclick="hamburg()"></i>
+        <div class="dropdown">
+            <div class="links">
+                <a href="#home">Home</a>
+                <a href="#skills">Skills</a>
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+                <i class="fa-solid fa-xmark cancel" onclick="cancel()"></i>
+            </div>    
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home">
+        <div class="main-container">
+            <div class="content">
+                <h1 data-aos="fade-right" data-aos-duration="1500" data-aos-delay="600">Hey I'm <span>John</span></h1>
+                <div data-aos="fade-left" data-aos-duration="1500" data-aos-delay="800" class="typewriter">
+                    Freelance <span class="typewriter-text"></span><label>|</label>
+                </div>
+                <p data-aos="flip-down" data-aos-duration="1500" data-aos-delay="1000">
+                    BSIT Graduate from West Visayas State University - Janiuay Campus (2026)
+                </p>
+                <div class="social-links">
+                    <i class="fa-brands fa-linkedin" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1200"></i>
+                    <i class="fa-brands fa-github" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1300"></i>
+                    <i class="fa-brands fa-facebook" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1400"></i>
+                    <i class="fa-brands fa-twitter" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1500"></i>
+                </div>
+                <button data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1700" onclick="scrollToContact()">Hire Me</button>
+            </div>
+            <div class="image" data-aos="zoom-in" data-aos-duration="2000">
+                <img src="main.jpg" alt="John Salazar">
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills-section">
+        <div class="container">
+            <h2 data-aos="fade-up" data-aos-duration="1000">Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fa-brands fa-html5"></i>
+                    <h3>HTML</h3>
+                </div>
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fa-brands fa-js-square"></i>
+                    <h3>JavaScript</h3>
+                </div>
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fa-brands fa-php"></i>
+                    <h3>PHP</h3>
+                </div>
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fa-brands fa-python"></i>
+                    <h3>Python</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 data-aos="fade-up" data-aos-duration="1000">About Me</h2>
+            <div class="about-content">
+                <div class="about-text" data-aos="fade-right">
+                    <p>I'm John Albert Salazar, a passionate self-employed freelance programmer from Iloilo City since 2021. I specialize in helping students with their projects and thesis through custom commissions.</p>
+                    <p>Currently pursuing BSIT at West Visayas State University - Janiuay Campus (Class of 2026). My thesis project is "Kingdom of Words: A 2D RPG Game for Learning French Language" - combining gaming with education!</p>
+                </div>
+                <div class="about-image" data-aos="fade-left">
+                    <img src="main1.jpg" alt="John Salazar">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+        <div class="container">
+            <h2 data-aos="fade-up" data-aos-duration="1000">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card" data-aos="zoom-in" data-aos-delay="100">
+                    <h3>Kingdom of Words</h3>
+                    <p>2D RPG Game for Learning French Language (Thesis Project)</p>
+                </div>
+                <div class="project-card" data-aos="zoom-in" data-aos-delay="200">
+                    <h3>Bakeshop Sales & Inventory</h3>
+                    <p>Complete sales and inventory management system</p>
+                </div>
+                <div class="project-card" data-aos="zoom-in" data-aos-delay="300">
+                    <h3>Travel Website</h3>
+                    <p>Modern responsive travel booking website</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 data-aos="fade-up" data-aos-duration="1000">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info" data-aos="fade-right">
+                    <div class="contact-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>johnalbertsalazar241@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>0927 833 9173</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>Iloilo City, Philippines</span>
+                    </div>
+                </div>
+                <form class="contact-form" data-aos="fade-left">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea placeholder="Your Message" rows="5" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({offset: 0, duration: 1000});
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        function scrollToContact() {
+            document.getElementById('contact').scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+            });
+        }
+    </script>
+</body>
+</html>
