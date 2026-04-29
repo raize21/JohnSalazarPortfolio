@@ -3,6 +3,33 @@
    ═══════════════════════════════ */
 
 /* ── BOOT SEQUENCE ── */
+document.getElementById("contactForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(e.target);
+
+  const data = {
+    name: formData.get("name"),
+    email: formData.get("email"),
+    subject: formData.get("subject"),
+    message: formData.get("message"),
+  };
+
+  const res = await fetch("/api/send", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (res.ok) {
+    alert("✓ Message sent!");
+    e.target.reset();
+  } else {
+    alert("✗ Failed to send message");
+  }
+});
 const bootLines = [
   'INITIALIZING KERNEL... OK',
   'LOADING NEURAL INTERFACE... OK',
