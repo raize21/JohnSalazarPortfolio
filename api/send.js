@@ -10,20 +10,26 @@ export default async function handler(req, res) {
   try {
     const { name, email, subject, message } = req.body;
 
-    await resend.emails.send({
+    const result = await resend.emails.send({
       from: "Portfolio Contact <onboarding@resend.dev>",
       to: "johnalbertsalazar241@gmail.com",
       subject: subject || "New Portfolio Message",
       html: `
-        <h2>New Message from Portfolio</h2>
+        <h2>New Message</h2>
         <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Client Email:</strong> ${email}</p>
-        <p><strong>Message:</strong><br/>${message}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Message:</strong><br>${message}</p>
       `,
     });
 
-    return res.status(200).json({ success: true });
+    return res.status(200).json({
+      success: true,
+      data: result,
+    });
+
   } catch (error) {
-    return res.status(500).json({ error: error.message });
+    return res.status(500).json({
+      error: error.message,
+    });
   }
 }
