@@ -24,20 +24,20 @@ document.getElementById("contactForm").addEventListener("submit", async (e) => {
       body: JSON.stringify(data),
     });
 
-    const result = await res.json();
+    const result = await res.json().catch(() => ({}));
 
     if (res.ok) {
       alert("✓ Message sent!");
-      console.log("Email sent:", result);
+      console.log("SUCCESS:", result);
       e.target.reset();
     } else {
+      console.log("ERROR RESPONSE:", result);
       alert("✗ Failed: " + (result.error || "Unknown error"));
-      console.log(result);
     }
 
   } catch (err) {
-    alert("✗ Network error");
-    console.log(err);
+    console.error("NETWORK ERROR:", err);
+    alert("✗ Network error (check API)");
   }
 });
 const bootLines = [
