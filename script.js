@@ -15,19 +15,29 @@ document.getElementById("contactForm").addEventListener("submit", async (e) => {
     message: formData.get("message"),
   };
 
-  const res = await fetch("/api/send", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
+  try {
+    const res = await fetch("/api/send", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
 
-  if (res.ok) {
-    alert("✓ Message sent!");
-    e.target.reset();
-  } else {
-    alert("✗ Failed to send message");
+    const result = await res.json();
+
+    if (res.ok) {
+      alert("✓ Message sent!");
+      console.log("Email sent:", result);
+      e.target.reset();
+    } else {
+      alert("✗ Failed: " + (result.error || "Unknown error"));
+      console.log(result);
+    }
+
+  } catch (err) {
+    alert("✗ Network error");
+    console.log(err);
   }
 });
 const bootLines = [
