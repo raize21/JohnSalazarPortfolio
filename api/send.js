@@ -8,10 +8,15 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { name, email, subject, message } = req.body;
+    const body =
+      typeof req.body === "string"
+        ? JSON.parse(req.body)
+        : req.body;
+
+    const { name, email, subject, message } = body || {};
 
     const result = await resend.emails.send({
-      from: "Portfolio Contact <onboarding@resend.dev>",
+      from: "onboarding@resend.dev",
       to: "johnalbertsalazar241@gmail.com",
       subject: subject || "New Portfolio Message",
       html: `
@@ -22,9 +27,15 @@ export default async function handler(req, res) {
       `,
     });
 
+    if (!result || result.error) {
+      return res.status(400).json({
+        error: result?.error || "Email failed",
+      });
+    }
+
     return res.status(200).json({
       success: true,
-      data: result,
+      id: result.id,
     });
 
   } catch (error) {
