@@ -11,13 +11,13 @@ export default async function handler(req, res) {
     const { name, email, subject, message } = req.body;
 
     await resend.emails.send({
-      from: "Portfolio <onboarding@resend.dev>",
+      from: "Portfolio Contact <onboarding@resend.dev>",
       to: "johnalbertsalazar241@gmail.com",
-      subject: subject || "New Message",
+      subject: subject || "New Portfolio Message",
       html: `
-        <h3>New Contact Message</h3>
+        <h2>New Message from Portfolio</h2>
         <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Client Email:</strong> ${email}</p>
         <p><strong>Message:</strong><br/>${message}</p>
       `,
     });
