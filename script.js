@@ -32,7 +32,7 @@ document.getElementById("contactForm").addEventListener("submit", async (e) => {
       e.target.reset();
     } else {
       console.log("ERROR RESPONSE:", result);
-      alert("✗ Failed: " + (result.error || "Unknown error"));
+      alert("✗ Failed: " + (result.error?.message || result.error));
     }
 
   } catch (err) {
