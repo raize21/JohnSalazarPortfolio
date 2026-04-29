@@ -438,35 +438,29 @@
               <span class="attb-dot green"></span>
               <span class="attb-title">send_message.exe — TRANSMIT</span>
             </div>
-            <form class="cr-form" onsubmit="handleSubmit(event)">
-              <div class="cf-group">
-                <label>// NAME</label>
-                <input type="text" placeholder="ENTER_NAME" required>
-              </div>
-              <div class="cf-group">
-                <label>// EMAIL</label>
-                <input type="email" placeholder="ENTER_EMAIL" required>
-              </div>
-              <div class="cf-group">
-                <label>// SUBJECT</label>
-                <input type="text" placeholder="ENTER_SUBJECT">
-              </div>
-              <div class="cf-group">
-                <label>// MESSAGE</label>
-                <textarea rows="4" placeholder="ENTER_MESSAGE..." required></textarea>
-              </div>
-              <button class="cyber-btn primary full" type="submit">
-                <span class="cb-glow"></span>
-                <span class="cb-text" id="submitText">TRANSMIT_MESSAGE.exe</span>
-                <span class="cb-corner tl"></span>
-                <span class="cb-corner tr"></span>
-                <span class="cb-corner bl"></span>
-                <span class="cb-corner br"></span>
-              </button>
-              <div class="cf-success" id="cfSuccess">
-                ✓ TRANSMISSION SUCCESSFUL — Response within 24hrs
-              </div>
-            </form>
+         <form class="cr-form" id="contactForm">
+  <div class="cf-group">
+    <label>// NAME</label>
+    <input type="text" name="name" placeholder="ENTER_NAME" required>
+  </div>
+
+  <div class="cf-group">
+    <label>// EMAIL</label>
+    <input type="email" name="email" placeholder="ENTER_EMAIL" required>
+  </div>
+
+  <div class="cf-group">
+    <label>// SUBJECT</label>
+    <input type="text" name="subject" placeholder="ENTER_SUBJECT">
+  </div>
+
+  <div class="cf-group">
+    <label>// MESSAGE</label>
+    <textarea name="message" rows="4" placeholder="ENTER_MESSAGE..." required></textarea>
+  </div>
+
+  <button type="submit">TRANSMIT_MESSAGE.exe</button>
+</form>
           </div>
         </div>
       </div>
