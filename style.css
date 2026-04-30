@@ -777,3 +777,81 @@ footer {
 @media (max-width: 480px) {
   /* NAV */
   nav { padding
+/* CARD BASE */
+.kow-style {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* IMAGE */
+.pc-image {
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+}
+
+.pc-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+/* TITLE OVER IMAGE */
+.pc-title {
+  position: absolute;
+  bottom: 15px;
+  left: 20px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #fff;
+  z-index: 2;
+}
+
+/* DARK OVERLAY (hidden initially) */
+.pc-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* SHOW OVERLAY ON HOVER */
+.kow-style:hover .pc-overlay {
+  opacity: 1;
+}
+
+/* ZOOM IMAGE ON HOVER */
+.kow-style:hover img {
+  transform: scale(1.08);
+}
+
+/* TEXT STYLING */
+.pc-desc {
+  font-size: 14px;
+  margin: 10px 0;
+  color: #ccc;
+}
+
+.pc-tags span,
+.pc-tech span {
+  background: rgba(0,255,255,0.1);
+  padding: 3px 8px;
+  margin: 2px;
+  font-size: 11px;
+}
+
+/* LINK */
+.pc-link {
+  color: cyan;
+  font-size: 13px;
+}
