@@ -777,16 +777,47 @@ footer {
 @media (max-width: 480px) {
   /* NAV */
   nav { padding
-.pc-image {
-  width: 100%;
-  height: 250px; /* controls height */
+.kow-card {
+  position: relative;
   overflow: hidden;
-  border-radius: 8px;
 }
 
-.pc-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* VERY IMPORTANT */
-  display: block;
+/* IMAGE BACKGROUND */
+.pc-bg {
+  position: absolute;
+  inset: 0;
+  background: url('kow.JPG') center/cover no-repeat;
+  z-index: 0;
+  transition: transform 0.5s ease;
+}
+
+/* DARK OVERLAY (so text is readable) */
+.pc-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.7),
+    rgba(0,0,0,0.9)
+  );
+}
+
+/* TEXT ABOVE IMAGE */
+.pc-body,
+.pc-num,
+.pc-corners,
+.pc-glow {
+  position: relative;
+  z-index: 2;
+}
+
+/* 🔥 HOVER EFFECT */
+.kow-card:hover .pc-bg {
+  transform: scale(1.08);
+}
+
+/* Optional glow boost on hover */
+.kow-card:hover {
+  box-shadow: 0 0 25px rgba(0,255,255,0.3);
 }
