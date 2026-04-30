@@ -769,3 +769,11 @@ footer {
   .skills-grid { grid-template-columns: 1fr; }
   .hero-name { font-size: 3rem; }
 }
+/* ═══════════════════════════════
+   MOBILE PERFECT - DESKTOP UNCHANGED
+   ═══════════════════════════════ */
+
+/* ── PHONE (≤ 480px) ── */
+@media (max-width: 480px) {
+  /* NAV */
+  nav { padding
