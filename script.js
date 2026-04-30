@@ -2,44 +2,6 @@
    JOHN SALAZAR — CYBERPUNK JS
    ═══════════════════════════════ */
 
-/* ── BOOT SEQUENCE ── */
-document.getElementById("contactForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const formData = new FormData(e.target);
-
-  const data = {
-    name: formData.get("name"),
-    email: formData.get("email"),
-    subject: formData.get("subject"),
-    message: formData.get("message"),
-  };
-
-  try {
-    const res = await fetch("/api/send", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-
-    const result = await res.json().catch(() => ({}));
-
-    if (res.ok) {
-      alert("✓ Message sent!");
-      console.log("SUCCESS:", result);
-      e.target.reset();
-    } else {
-      console.log("ERROR RESPONSE:", result);
-      alert("✗ Failed: " + (result.error?.message || result.error));
-    }
-
-  } catch (err) {
-    console.error("NETWORK ERROR:", err);
-    alert("✗ Network error (check API)");
-  }
-});
 const bootLines = [
   'INITIALIZING KERNEL... OK',
   'LOADING NEURAL INTERFACE... OK',
