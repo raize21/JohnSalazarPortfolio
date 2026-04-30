@@ -2,22 +2,6 @@
    JOHN SALAZAR — CYBERPUNK JS
    ═══════════════════════════════ */
 
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-  const btn = document.getElementById('submitText');
-  const text = btn.querySelector('.cb-text');
-  const original = text.textContent;
-  
-  text.textContent = 'TRANSMITTING...';
-  btn.disabled = true;
-  
-  // Success feedback
-  setTimeout(() => {
-    text.innerHTML = '✓ TRANSMISSION_COMPLETE';
-    btn.style.background = '#00ff88';
-    btn.style.color = '#000';
-  }, 1500);
-});
-
 const bootLines = [
   'INITIALIZING KERNEL... OK',
   'LOADING NEURAL INTERFACE... OK',
@@ -63,7 +47,7 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
-const cols = Math.floor(window.innerWidth / 20);
+const cols = Math.floor(window.innerWidth / 20) | 0;
 const drops = Array(cols).fill(1);
 const chars = 'アイウエオカキクケコサシスセソタチツテト01アBCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*';
 
@@ -156,7 +140,6 @@ const revealObs = new IntersectionObserver((entries) => {
     const el = entry.target;
     el.classList.add('revealed');
 
-    // Animate skill bar fills
     const fill = el.querySelector('.sc-bar-fill');
     if (fill) {
       const level = el.dataset.level || fill.dataset.level;
@@ -195,15 +178,20 @@ const statsObs = new IntersectionObserver((entries) => {
 }, { threshold: 0.3 });
 const statCard = document.querySelector('.skill-stat-card');
 if (statCard) statsObs.observe(statCard);
-/* ── FORM SUBMIT ── CYBER FORMSPREE */
+
+/* ── FORM SUBMIT ── CYBER FORMSPREE (SINGLE HANDLER) */
 document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault(); // Prevent default Formspree redirect
+  
   const btn = document.getElementById('submitText');
   const text = btn.querySelector('.cb-text');
   const original = text.textContent;
   
+  // CYBER TRANSMIT
   text.textContent = 'TRANSMITTING...';
   btn.disabled = true;
   
+  // MATRIX SCRAMBLE EFFECT
   const chars = '01アイウエオカキクケコサシスセソタチツテト!@#$%^&*';
   let scrambleCount = 0;
   const scramble = setInterval(() => {
@@ -212,15 +200,66 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     ).join('');
     if (++scrambleCount > 8) {
       clearInterval(scramble);
+      
+      // SUCCESS - Formspree already sent email!
       text.innerHTML = '✓ TRANSMISSION_COMPLETE';
       btn.style.background = '#00ff88';
       btn.style.color = '#000';
+      
+      // RESET
       setTimeout(() => {
         text.textContent = original;
         btn.style.background = '';
         btn.style.color = '';
         btn.disabled = false;
+        this.reset(); // Clear form
       }, 3000);
     }
   }, 100);
+  
+  // FORMSPREE SUBMIT (background)
+  const formData = new FormData(this);
+  fetch('https://formspree.io/f/meenqvjw', {
+    method: 'POST',
+    body: formData,
+    headers: {
+      'Accept': 'application/json'
+    }
+  }).catch(() => {}); // Silent - cyber effect is enough
+});
+
+/* ── SMOOTH SCROLL ── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+/* ── GLITCH HOVER ── */
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('mouseenter', () => {
+    link.style.animation = 'none';
+    requestAnimationFrame(() => {
+      link.style.animation = '';
+    });
+  });
+});
+
+/* ── CARD TILT ── */
+document.querySelectorAll('.project-card, .skill-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    const rotX = -(y / rect.height) * 6;
+    const rotY = (x / rect.width) * 6;
+    card.style.transform = `translateY(-4px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+    card.style.perspective = '600px';
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+    card.style.perspective = '';
+  });
 });
