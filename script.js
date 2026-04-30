@@ -17,15 +17,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     btn.style.color = '#000';
   }, 1500);
 });
-// Inside the success block, add:
-const successEl = document.getElementById('formSuccess');
-successEl.style.display = 'block';
-this.reset(); // Clear form
 
-setTimeout(() => {
-  successEl.style.display = 'none';
-  // ... rest of reset
-}, 4000);
 const bootLines = [
   'INITIALIZING KERNEL... OK',
   'LOADING NEURAL INTERFACE... OK',
