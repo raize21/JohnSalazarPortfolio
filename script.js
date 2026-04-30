@@ -2,6 +2,22 @@
    JOHN SALAZAR — CYBERPUNK JS
    ═══════════════════════════════ */
 
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  const btn = document.getElementById('submitText');
+  const text = btn.querySelector('.cb-text');
+  const original = text.textContent;
+  
+  text.textContent = 'TRANSMITTING...';
+  btn.disabled = true;
+  
+  // Success feedback
+  setTimeout(() => {
+    text.innerHTML = '✓ TRANSMISSION_COMPLETE';
+    btn.style.background = '#00ff88';
+    btn.style.color = '#000';
+  }, 1500);
+});
+
 const bootLines = [
   'INITIALIZING KERNEL... OK',
   'LOADING NEURAL INTERFACE... OK',
@@ -179,61 +195,32 @@ const statsObs = new IntersectionObserver((entries) => {
 }, { threshold: 0.3 });
 const statCard = document.querySelector('.skill-stat-card');
 if (statCard) statsObs.observe(statCard);
-
-/* ── FORM SUBMIT ── */
-function handleSubmit(e) {
-  e.preventDefault();
+/* ── FORM SUBMIT ── CYBER FORMSPREE */
+document.getElementById('contactForm').addEventListener('submit', function(e) {
   const btn = document.getElementById('submitText');
-  btn.textContent = 'TRANSMITTING...';
-
-  // Simulate sending
-  const chars = '!@#$%^&*<>?/\\|{}[]~`';
-  let count = 0;
+  const text = btn.querySelector('.cb-text');
+  const original = text.textContent;
+  
+  text.textContent = 'TRANSMITTING...';
+  btn.disabled = true;
+  
+  const chars = '01アイウエオカキクケコサシスセソタチツテト!@#$%^&*';
+  let scrambleCount = 0;
   const scramble = setInterval(() => {
-    btn.textContent = Array.from({length: 18}, () => chars[Math.floor(Math.random() * chars.length)]).join('');
-    if (++count > 10) {
+    text.textContent = Array.from({length: 18}, () => 
+      chars[Math.floor(Math.random() * chars.length)]
+    ).join('');
+    if (++scrambleCount > 8) {
       clearInterval(scramble);
-      btn.textContent = 'TRANSMIT_MESSAGE.exe';
-      const fb = document.getElementById('cfSuccess');
-      fb.style.display = 'block';
-      e.target.reset();
-      setTimeout(() => { fb.style.display = 'none'; }, 5000);
+      text.innerHTML = '✓ TRANSMISSION_COMPLETE';
+      btn.style.background = '#00ff88';
+      btn.style.color = '#000';
+      setTimeout(() => {
+        text.textContent = original;
+        btn.style.background = '';
+        btn.style.color = '';
+        btn.disabled = false;
+      }, 3000);
     }
-  }, 80);
-}
-
-/* ── SMOOTH SCROLL NAV ── */
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    e.preventDefault();
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-});
-
-/* ── GLITCH HOVER ON NAV LINKS ── */
-document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('mouseenter', () => {
-    link.style.animation = 'none';
-    requestAnimationFrame(() => {
-      link.style.animation = '';
-    });
-  });
-});
-
-/* ── CARD TILT EFFECT ── */
-document.querySelectorAll('.project-card, .skill-card').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    const rotX = -(y / rect.height) * 6;
-    const rotY = (x / rect.width) * 6;
-    card.style.transform = `translateY(-4px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
-    card.style.perspective = '600px';
-  });
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = '';
-    card.style.perspective = '';
-  });
+  }, 100);
 });
