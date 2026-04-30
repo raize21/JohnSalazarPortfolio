@@ -816,15 +816,20 @@ footer {
 .pc-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.75);
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.95) 20%,
+    rgba(0,0,0,0.7) 60%,
+    rgba(0,0,0,0.2) 100%
+  );
   padding: 20px;
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: all 0.4s ease;
+
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end; /* push content to bottom */
 }
-
 /* SHOW OVERLAY ON HOVER */
 .kow-style:hover .pc-overlay {
   opacity: 1;
@@ -854,4 +859,73 @@ footer {
 .pc-link {
   color: cyan;
   font-size: 13px;
+}
+.pc-title {
+  position: absolute;
+  bottom: 15px;
+  left: 20px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #fff;
+  z-index: 3; /* higher than overlay */
+}
+.kow-style {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid rgba(0,255,255,0.2);
+  box-shadow: 0 0 15px rgba(0,255,255,0.08);
+  transition: all 0.3s ease;
+}
+
+.kow-style:hover {
+  border-color: cyan;
+  box-shadow: 0 0 25px rgba(0,255,255,0.25);
+}
+.pc-tags span,
+.pc-tech span {
+  background: rgba(0,255,255,0.12);
+  border: 1px solid rgba(0,255,255,0.4);
+  color: cyan;
+  padding: 4px 10px;
+  margin: 3px;
+  font-size: 11px;
+  border-radius: 3px;
+}
+.pc-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+.pc-overlay {
+  transform: translateY(20px);
+}
+
+.kow-style:hover .pc-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+.pc-link {
+  color: cyan;
+  font-size: 13px;
+  text-decoration: none;
+  position: relative;
+}
+
+.pc-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background: cyan;
+  transition: width 0.3s ease;
+}
+
+.pc-link:hover::after {
+  width: 100%;
 }
