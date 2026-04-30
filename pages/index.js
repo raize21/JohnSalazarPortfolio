@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>J.A. Salazar // Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- BOOT SCREEN -->
+  <div id="boot-screen">
+    <div class="boot-content">
+      <div class="boot-logo">SYS://INIT</div>
+      <div class="boot-lines" id="bootLines"></div>
+      <div class="boot-bar-wrap"><div class="boot-bar" id="bootBar"></div></div>
+      <div class="boot-pct" id="bootPct">0%</div>
+    </div>
+  </div>
+
+  <!-- SCANLINES & FX -->
+  <div class="scanlines"></div>
+  <div class="noise"></div>
+  <div class="vignette"></div>
+  <canvas id="matrix-bg"></canvas>
+
+  <!-- GLITCH CURSOR -->
+  <div id="cyber-cursor">
+    <div class="cc-outer"></div>
+    <div class="cc-cross"></div>
+    <div class="cc-dot"></div>
+  </div>
+
+  <!-- PROGRESS BAR -->
+  <div id="progress-bar"></div>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="nav-brand">
+      <span class="nb-bracket">[</span>
+      <span class="nb-name">J.A.<span class="nb-acc">SALAZAR</span></span>
+      <span class="nb-bracket">]</span>
+      <span class="nb-status"><span class="status-dot"></span>ONLINE</span>
+    </div>
+    <div class="nav-links">
+      <a href="#home" data-label="00">HOME</a>
+      <a href="#skills" data-label="01">SKILLS</a>
+      <a href="#about" data-label="02">ABOUT</a>
+      <a href="#projects" data-label="03">PROJECTS</a>
+      <a href="#contact" data-label="04">CONTACT</a>
+    </div>
+    <button class="hamburger" id="hamburger"><i class="fa-solid fa-bars-staggered"></i></button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" id="mobileClose"><i class="fa-solid fa-xmark"></i></button>
+    <div class="mm-grid">
+      <a href="#home" onclick="closeMobile()"><span>00</span>HOME</a>
+      <a href="#skills" onclick="closeMobile()"><span>01</span>SKILLS</a>
+      <a href="#about" onclick="closeMobile()"><span>02</span>ABOUT</a>
+      <a href="#projects" onclick="closeMobile()"><span>03</span>PROJECTS</a>
+      <a href="#contact" onclick="closeMobile()"><span>04</span>CONTACT</a>
+    </div>
+  </div>
+
+  <!-- ═══════ HERO ═══════ -->
+  <section id="home">
+    <div class="hero-side-hud left">
+      <div class="hud-bar"></div>
+      <div class="hud-labels">
+        <span>LAT: 10.7202° N</span>
+        <span>LON: 122.5621° E</span>
+        <span>SEC: CLEARED</span>
+        <span id="clock-hud">--:--:--</span>
+      </div>
+    </div>
+    <div class="hero-side-hud right">
+      <div class="hud-bar"></div>
+      <div class="hud-labels">
+        <span>NODE: PHL-ILO</span>
+        <span>STATUS: ACTIVE</span>
+        <span>SIGNAL: ████░</span>
+        <span>PING: 12ms</span>
+      </div>
+    </div>
+
+    <div class="hero-center">
+      <div class="hero-eyebrow">
+        <span class="he-line"></span>
+        <span class="he-tag">// SYSTEM PROFILE LOADED</span>
+        <span class="he-line"></span>
+      </div>
+      <h1 class="hero-name">
+        <span class="hn-first glitch" data-text="JOHN">JOHN</span>
+        <span class="hn-last glitch" data-text="SALAZAR">SALAZAR</span>
+      </h1>
+      <div class="hero-title-row">
+        <span class="htr-bracket">&lt;</span>
+        <span class="htr-type" id="typewriter"></span>
+        <span class="tw-cursor">_</span>
+        <span class="htr-bracket">/&gt;</span>
+      </div>
+      <div class="hero-desc">
+        <span class="hd-prefix">SYS:MSG &gt;&gt;</span>
+        BSIT Graduate [WVSU-Janiuay '26] · Freelance Dev · PHP Systems · Game Developer · Based in Iloilo City, PHL
+      </div>
+      <div class="hero-actions">
+        <button class="cyber-btn primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+          <span class="cb-glow"></span>
+          <span class="cb-text">HIRE_ME.exe</span>
+          <span class="cb-corner tl"></span>
+          <span class="cb-corner tr"></span>
+          <span class="cb-corner bl"></span>
+          <span class="cb-corner br"></span>
+        </button>
+        <button class="cyber-btn secondary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
+          <span class="cb-text">VIEW_WORK.dat</span>
+          <span class="cb-corner tl"></span>
+          <span class="cb-corner tr"></span>
+          <span class="cb-corner bl"></span>
+          <span class="cb-corner br"></span>
+        </button>
+      </div>
+      <div class="hero-socials">
+        <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/john-albert-salazar-707314360/" class="hs-link" data-tooltip="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/raize21" class="hs-link" data-tooltip="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a target="_blank" rel="noopener noreferrer" href="https://web.facebook.com/profile.php?id=61572164355787" class="hs-link" data-tooltip="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a  target="_blank" rel="noopener noreferrer" href="#" class="hs-link" data-tooltip="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+      </div>
+    </div>
+
+    <div class="hero-img-wrap">
+      <div class="himg-frame">
+        <div class="himg-scanline"></div>
+        <div class="himg-corners">
+          <span class="hc tl"></span><span class="hc tr"></span>
+          <span class="hc bl"></span><span class="hc br"></span>
+        </div>
+        <img src="main.png" alt="John Salazar"
+          onerror="this.style.display='none';document.getElementById('img-fallback').style.display='flex'">
+        <div id="img-fallback" class="img-fallback" style="display:none">
+          <i class="fa-solid fa-user"></i>
+          <span>// main.jpg</span>
+        </div>
+        <div class="himg-overlay"></div>
+        <div class="himg-tag">
+          <span>ID: JAS-2026</span>
+          <span class="open-tag">OPEN TO WORK</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-hint">
+      <div class="sh-line"></div>
+      <span>SCROLL</span>
+    </div>
+  </section>
+
+  <!-- ═══════ SKILLS ═══════ -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-header">
+        <div class="sh-tag"><span class="sh-num">01</span><span class="sh-sep">//</span>SKILL_MATRIX.sys</div>
+        <h2 class="section-title">TECH<span class="accent">STACK</span></h2>
+        <div class="sh-underline"></div>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card" data-skill="html" data-level="90" data-reveal>
+          <div class="sc-header">
+            <i class="fa-brands fa-html5"></i>
+            <div class="sc-info">
+              <div class="sc-name">HTML5</div>
+              <div class="sc-class">MARKUP · PROFICIENT</div>
+            </div>
+            <div class="sc-pct">90%</div>
+          </div>
+          <div class="sc-bar-wrap">
+            <div class="sc-bar-track">
+              <div class="sc-bar-fill" data-level="90"></div>
+            </div>
+            <div class="sc-bar-segments"></div>
+          </div>
+          <div class="sc-corner tl"></div><div class="sc-corner br"></div>
+        </div>
+        <div class="skill-card" data-skill="css" data-level="80" data-reveal>
+          <div class="sc-header">
+            <i class="fa-brands fa-css3-alt"></i>
+            <div class="sc-info">
+              <div class="sc-name">CSS3</div>
+              <div class="sc-class">STYLING · ADVANCED</div>
+            </div>
+            <div class="sc-pct">80%</div>
+          </div>
+          <div class="sc-bar-wrap">
+            <div class="sc-bar-track">
+              <div class="sc-bar-fill" data-level="80"></div>
+            </div>
+          </div>
+          <div class="sc-corner tl"></div><div class="sc-corner br"></div>
+        </div>
+        <div class="skill-card" data-skill="js" data-level="75" data-reveal>
+          <div class="sc-header">
+            <i class="fa-brands fa-js-square"></i>
+            <div class="sc-info">
+              <div class="sc-name">JavaScript</div>
+              <div class="sc-class">SCRIPTING · ADVANCED</div>
+            </div>
+            <div class="sc-pct">75%</div>
+          </div>
+          <div class="sc-bar-wrap">
+            <div class="sc-bar-track">
+              <div class="sc-bar-fill" data-level="75"></div>
+            </div>
+          </div>
+          <div class="sc-corner tl"></div><div class="sc-corner br"></div>
+        </div>
+        <div class="skill-card" data-skill="php" data-level="70" data-reveal>
+          <div class="sc-header">
+            <i class="fa-brands fa-php"></i>
+            <div class="sc-info">
+              <div class="sc-name">PHP</div>
+              <div class="sc-class">BACKEND · INTERMEDIATE</div>
+            </div>
+            <div class="sc-pct">70%</div>
+          </div>
+          <div class="sc-bar-wrap">
+            <div class="sc-bar-track">
+              <div class="sc-bar-fill" data-level="70"></div>
+            </div>
+          </div>
+          <div class="sc-corner tl"></div><div class="sc-corner br"></div>
+        </div>
+        <div class="skill-card" data-skill="python" data-level="65" data-reveal>
+          <div class="sc-header">
+            <i class="fa-brands fa-python"></i>
+            <div class="sc-info">
+              <div class="sc-name">Python</div>
+              <div class="sc-class">SCRIPTING · INTERMEDIATE</div>
+            </div>
+            <div class="sc-pct">65%</div>
+          </div>
+          <div class="sc-bar-wrap">
+            <div class="sc-bar-track">
+              <div class="sc-bar-fill" data-level="65"></div>
+            </div>
+          </div>
+          <div class="sc-corner tl"></div><div class="sc-corner br"></div>
+        </div>
+        <!-- Hex grid additional node -->
+        <div class="skill-card skill-stat-card" data-reveal>
+          <div class="stat-grid">
+            <div class="sg-item"><div class="sg-num" id="proj-count">0</div><div class="sg-label">PROJECTS</div></div>
+            <div class="sg-item"><div class="sg-num" id="yr-count">0</div><div class="sg-label">YRS EXP</div></div>
+            <div class="sg-item"><div class="sg-num">5+</div><div class="sg-label">SKILLS</div></div>
+            <div class="sg-item"><div class="sg-num">∞</div><div class="sg-label">COFFEE</div></div>
+          </div>
+          <div class="sc-corner tl"></div><div class="sc-corner br"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ ABOUT ═══════ -->
+  <section id="about">
+    <div class="container">
+      <div class="section-header">
+        <div class="sh-tag"><span class="sh-num">02</span><span class="sh-sep">//</span>AGENT_PROFILE.dat</div>
+        <h2 class="section-title">ABOUT<span class="accent">ME</span></h2>
+        <div class="sh-underline"></div>
+      </div>
+      <div class="about-grid">
+        <div class="about-img-col" data-reveal>
+          <div class="aimg-frame">
+            <img src="main1.png" alt="John Salazar"
+              onerror="this.style.display='none';document.getElementById('about-fallback').style.display='flex'">
+            <div id="about-fallback" class="img-fallback" style="display:none">
+              <i class="fa-solid fa-user-tie"></i>
+              <span>// main1.jpg</span>
+            </div>
+            <div class="aimg-hud">
+              <div class="ah-row"><span>NAME</span><span>JOHN ALBERT SALAZAR</span></div>
+              <div class="ah-row"><span>ROLE</span><span>FREELANCE DEV</span></div>
+              <div class="ah-row"><span>LOC</span><span>ILOILO CITY, PHL</span></div>
+              <div class="ah-row"><span>STATUS</span><span class="status-on">● ACTIVE</span></div>
+            </div>
+            <div class="aimg-corners">
+              <span class="hc tl"></span><span class="hc tr"></span>
+              <span class="hc bl"></span><span class="hc br"></span>
+            </div>
+          </div>
+        </div>
+        <div class="about-text-col" data-reveal>
+          <div class="at-terminal">
+            <div class="att-bar">
+              <span class="attb-dot red"></span>
+              <span class="attb-dot yellow"></span>
+              <span class="attb-dot green"></span>
+              <span class="attb-title">agent_bio.txt — READ ONLY</span>
+            </div>
+            <div class="att-body">
+              <div class="att-line"><span class="atl-prompt">$</span><span class="atl-cmd">cat bio.txt</span></div>
+              <div class="att-output">
+                <p>I'm <strong>John Albert Salazar</strong>, a self-employed freelance programmer from <strong>Iloilo City</strong> since 2021. I specialize in helping students with their capstone projects and thesis through custom commissions.</p>
+                <p>Currently completing my <strong>BSIT</strong> at West Visayas State University — Janiuay Campus (Class of 2026). My capstone thesis is <strong>"Kingdom of Words"</strong> — a 2D RPG game designed to make learning French engaging for Filipino students.</p>
+                <p>When I'm not coding, I'm exploring new frameworks, designing game mechanics, or helping fellow students level up their academic projects.</p>
+              </div>
+              <div class="att-line"><span class="atl-prompt">$</span><span class="atl-cmd">cat skills_tags.txt</span></div>
+              <div class="about-chips">
+                <span class="chip">Freelancer</span>
+                <span class="chip">Game Dev</span>
+                <span class="chip">Web Dev</span>
+                <span class="chip">PHP Systems</span>
+                <span class="chip">Iloilo City</span>
+                <span class="chip">BSIT 2026</span>
+              </div>
+              <div class="att-line mt-1"><span class="atl-prompt">$</span><span class="tw-blink">_</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ PROJECTS ═══════ -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-header">
+        <div class="sh-tag"><span class="sh-num">03</span><span class="sh-sep">//</span>MISSION_LOG.exe</div>
+        <h2 class="section-title">FEATURED<span class="accent">PROJECTS</span></h2>
+        <div class="sh-underline"></div>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card pc-wide" data-reveal>
+          <div class="pc-num">01</div>
+          <div class="pc-body">
+            <div class="pc-tags"><span>GAME DEV</span><span>THESIS</span><span>2D RPG</span></div>
+            <h3 class="pc-title">Kingdom of Words</h3>
+            <p class="pc-desc">A 2D RPG adventure game for learning the French language — combining narrative gameplay with vocabulary challenges. Built as capstone thesis for WVSU. Players explore dungeons, battle enemies using French vocab, and unlock story progression.</p>
+            <div class="pc-footer">
+              <div class="pc-tech"><span>GDScript</span><span>Godot</span><span>SQLite</span></div>
+              <a href="#" class="pc-link">ACCESS_FILE <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+          <div class="pc-corners">
+            <span class="hc tl"></span><span class="hc tr"></span>
+            <span class="hc bl"></span><span class="hc br"></span>
+          </div>
+          <div class="pc-glow"></div>
+        </div>
+
+        <div class="project-card" data-reveal>
+          <div class="pc-num">02</div>
+          <div class="pc-body">
+            <div class="pc-tags"><span>PHP</span><span>MySQL</span><span>POS</span></div>
+            <h3 class="pc-title">Bakeshop Sales &amp; Inventory</h3>
+            <p class="pc-desc">Complete POS and inventory management system for small bakeshops. Real-time stock tracking, sales reports, user management with role-based access control.</p>
+            <div class="pc-footer">
+              <div class="pc-tech"><span>PHP</span><span>MySQL</span><span>Bootstrap</span></div>
+              <a href="#" class="pc-link">ACCESS_FILE <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+          <div class="pc-corners">
+            <span class="hc tl"></span><span class="hc tr"></span>
+            <span class="hc bl"></span><span class="hc br"></span>
+          </div>
+          <div class="pc-glow"></div>
+        </div>
+
+        <div class="project-card" data-reveal>
+          <div class="pc-num">03</div>
+          <div class="pc-body">
+            <div class="pc-tags"><span>HTML</span><span>CSS</span><span>JS</span></div>
+            <h3 class="pc-title">Travel Website</h3>
+            <p class="pc-desc">Modern, fully responsive travel booking website with animated sections, destination gallery, interactive booking flow and multi-step reservation system.</p>
+            <div class="pc-footer">
+              <div class="pc-tech"><span>HTML5</span><span>CSS3</span><span>JavaScript</span></div>
+              <a href="#" class="pc-link">ACCESS_FILE <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+          <div class="pc-corners">
+            <span class="hc tl"></span><span class="hc tr"></span>
+            <span class="hc bl"></span><span class="hc br"></span>
+          </div>
+          <div class="pc-glow"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ CONTACT ═══════ -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-header">
+        <div class="sh-tag"><span class="sh-num">04</span><span class="sh-sep">//</span>OPEN_CHANNEL.link</div>
+        <h2 class="section-title">GET IN<span class="accent">TOUCH</span></h2>
+        <div class="sh-underline"></div>
+      </div>
+      <div class="contact-wrap">
+        <div class="contact-left" data-reveal>
+          <div class="cl-heading">
+            <span class="clh-bracket">//</span>
+            Ready to start a <span class="accent">mission</span> together?
+          </div>
+          <p class="cl-sub">Whether you're a student needing help with your thesis, or a business needing a custom system — I'm your operator. Let's build something that matters.</p>
+          <div class="contact-items">
+            <div class="ci-item">
+              <div class="ci-icon"><i class="fa-solid fa-envelope"></i></div>
+              <div class="ci-data">
+                <span class="cid-label">EMAIL</span>
+                <span class="cid-val">johnalbertsalazar241@gmail.com</span>
+              </div>
+            </div>
+            <div class="ci-item">
+              <div class="ci-icon"><i class="fa-solid fa-phone"></i></div>
+              <div class="ci-data">
+                <span class="cid-label">PHONE</span>
+                <span class="cid-val">0927 833 9173</span>
+              </div>
+            </div>
+            <div class="ci-item">
+              <div class="ci-icon"><i class="fa-solid fa-location-dot"></i></div>
+              <div class="ci-data">
+                <span class="cid-label">LOCATION</span>
+                <span class="cid-val">Iloilo City, Philippines</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-right" data-reveal>
+          <div class="cr-terminal">
+            <div class="att-bar">
+              <span class="attb-dot red"></span>
+              <span class="attb-dot yellow"></span>
+              <span class="attb-dot green"></span>
+              <span class="attb-title">send_message.exe — TRANSMIT</span>
+            </div>
+            <form class="cr-form" onsubmit="handleSubmit(event)">
+              <div class="cf-group">
+                <label>// NAME</label>
+                <input type="text" placeholder="ENTER_NAME" required>
+              </div>
+              <div class="cf-group">
+                <label>// EMAIL</label>
+                <input type="email" placeholder="ENTER_EMAIL" required>
+              </div>
+              <div class="cf-group">
+                <label>// SUBJECT</label>
+                <input type="text" placeholder="ENTER_SUBJECT">
+              </div>
+              <div class="cf-group">
+                <label>// MESSAGE</label>
+                <textarea rows="4" placeholder="ENTER_MESSAGE..." required></textarea>
+              </div>
+              <button class="cyber-btn primary full" type="submit">
+                <span class="cb-glow"></span>
+                <span class="cb-text" id="submitText">TRANSMIT_MESSAGE.exe</span>
+                <span class="cb-corner tl"></span>
+                <span class="cb-corner tr"></span>
+                <span class="cb-corner bl"></span>
+                <span class="cb-corner br"></span>
+              </button>
+              <div class="cf-success" id="cfSuccess">
+                ✓ TRANSMISSION SUCCESSFUL — Response within 24hrs
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="ft-left">
+      <span class="ft-logo">[J.A.SALAZAR]</span>
+      <span class="ft-copy">© 2026 // ALL RIGHTS RESERVED // PHL</span>
+    </div>
+    <div class="ft-right">
+      <div class="ft-socials">
+        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="#"><i class="fa-brands fa-github"></i></a>
+        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+      </div>
+      <button class="ft-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <i class="fa-solid fa-chevron-up"></i>
+      </button>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
