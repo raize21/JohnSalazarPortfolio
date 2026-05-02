@@ -11,319 +11,336 @@
 
   <!-- ── PROJECTS SECTION OVERRIDE STYLES ── -->
   <style>
-    /* ─── Reset project card styles from style.css ─── */
-    #projects .projects-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
+   /* ─── Reset project card styles from style.css ─── */
+#projects .projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
 
-    #projects .project-card {
-      position: relative;
-      border-radius: 2px;
-      overflow: hidden;
-      cursor: default;
-      border: 1px solid rgba(0, 245, 196, 0.12);
-      transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
-      background: #0a0e16;
-      min-height: 340px;
-      display: flex;
-      flex-direction: column;
-    }
+#projects .project-card {
+  position: relative;
+  border-radius: 2px;
+  overflow: hidden;
+  cursor: default;
+  border: 1px solid rgba(0, 245, 196, 0.12);
+  transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  background: #0a0e16;
+  min-height: 340px;
+  display: flex;
+  flex-direction: column;
+}
 
-    #projects .project-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(0, 245, 196, 0.5);
-      box-shadow: 0 12px 40px rgba(0, 245, 196, 0.08);
-    }
+#projects .project-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 245, 196, 0.5);
+  box-shadow: 0 12px 40px rgba(0, 245, 196, 0.08);
+}
 
-    #projects .pc-wide {
-      grid-column: 1 / -1;
-      min-height: 400px;
-      flex-direction: row;
-    }
+#projects .pc-wide {
+  grid-column: 1 / -1;
+  min-height: 400px;
+  flex-direction: row;
+}
 
-    /* Background image layer */
-    #projects .pc-bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      background-size: cover;
-      background-position: center;
-      transition: transform 0.6s ease, opacity 0.6s ease;
-      opacity: 0.25;
-    }
+/* Background image layer */
+#projects .pc-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+  opacity: 0.35;
+}
 
-    #projects .project-card:hover .pc-bg {
-      transform: scale(1.05);
-      opacity: 0.38;
-    }
+#projects .project-card:hover .pc-bg {
+  transform: scale(1.05);
+  opacity: 0.5;
+}
 
-    /* Wide card image strip (right side) */
-    #projects .pc-wide-img {
-      position: absolute;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      width: 50%;
-      z-index: 0;
-      background-size: cover;
-      background-position: center;
-      opacity: 0.28;
-      transition: opacity 0.6s ease;
-    }
+/* Wide card image strip (right side) */
+#projects .pc-wide-img {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.65;
+  filter: brightness(1.15) contrast(1.1) saturate(1.1);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
 
-    #projects .project-card:hover .pc-wide-img {
-      opacity: 0.42;
-    }
+#projects .project-card:hover .pc-wide-img {
+  opacity: 0.85;
+  transform: scale(1.03);
+}
 
-    #projects .pc-wide-img-overlay {
-      position: absolute;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      width: 50%;
-      z-index: 1;
-      background: linear-gradient(90deg, #020408 0%, rgba(2, 4, 8, 0.15) 100%);
-    }
+/* Image overlay (reduced darkness) */
+#projects .pc-wide-img-overlay {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  z-index: 1;
+  background: linear-gradient(
+    90deg,
+    rgba(2, 4, 8, 0.55) 0%,
+    rgba(2, 4, 8, 0.1) 100%
+  );
+}
 
-    /* Gradient overlay for standard cards */
-    #projects .pc-gradient {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      background: linear-gradient(135deg, rgba(2,4,8,0.95) 0%, rgba(2,4,8,0.65) 55%, rgba(2,4,8,0.88) 100%);
-    }
+/* Gradient overlay (lighter so image shows) */
+#projects .pc-gradient {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    135deg,
+    rgba(2,4,8,0.75) 0%,
+    rgba(2,4,8,0.45) 55%,
+    rgba(2,4,8,0.7) 100%
+  );
+}
 
-    /* Scanline effect */
-    #projects .pc-scan {
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(0, 0, 0, 0.025) 2px,
-        rgba(0, 0, 0, 0.025) 4px
-      );
-      pointer-events: none;
-    }
+/* Scanline effect (softened) */
+#projects .pc-scan {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.02) 2px,
+    rgba(0, 0, 0, 0.02) 4px
+  );
+  opacity: 0.03;
+  pointer-events: none;
+}
 
-    /* Ghost number */
-    #projects .pc-num {
-      position: absolute;
-      top: 16px;
-      right: 20px;
-      font-family: 'Orbitron', monospace;
-      font-size: 72px;
-      font-weight: 900;
-      color: rgba(0, 245, 196, 0.055);
-      z-index: 3;
-      line-height: 1;
-      user-select: none;
-      pointer-events: none;
-    }
+/* Ghost number */
+#projects .pc-num {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-family: 'Orbitron', monospace;
+  font-size: 72px;
+  font-weight: 900;
+  color: rgba(0, 245, 196, 0.055);
+  z-index: 3;
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+}
 
-    #projects .pc-wide .pc-num {
-      right: 28px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 110px;
-    }
+#projects .pc-wide .pc-num {
+  right: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 110px;
+}
 
-    /* Body content */
-    #projects .pc-body {
-      position: relative;
-      z-index: 4;
-      padding: 30px 28px 26px;
-      display: flex;
-      flex-direction: column;
-      gap: 13px;
-      flex: 1;
-    }
+/* Body content */
+#projects .pc-body {
+  position: relative;
+  z-index: 4;
+  padding: 30px 28px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  flex: 1;
+}
 
-    #projects .pc-wide .pc-body {
-      max-width: 52%;
-    }
+#projects .pc-wide .pc-body {
+  max-width: 52%;
+}
 
-    /* Featured badge */
-    #projects .pc-badge {
-      position: absolute;
-      top: 18px;
-      left: 24px;
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 3px;
-      color: #000;
-      background: #00f5c4;
-      padding: 4px 10px;
-      z-index: 5;
-      border-radius: 1px;
-      font-weight: 700;
-    }
+/* Featured badge */
+#projects .pc-badge {
+  position: absolute;
+  top: 18px;
+  left: 24px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: #000;
+  background: #00f5c4;
+  padding: 4px 10px;
+  z-index: 5;
+  border-radius: 1px;
+  font-weight: 700;
+}
 
-    /* Tags */
-    #projects .pc-tags {
-      display: flex;
-      gap: 7px;
-      flex-wrap: wrap;
-      margin-top: 4px;
-    }
+/* Tags */
+#projects .pc-tags {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
 
-    #projects .pc-tags span {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 2px;
-      padding: 3px 9px;
-      border: 1px solid rgba(0, 245, 196, 0.3);
-      color: #00f5c4;
-      border-radius: 1px;
-      background: rgba(0, 245, 196, 0.05);
-    }
+#projects .pc-tags span {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  padding: 3px 9px;
+  border: 1px solid rgba(0, 245, 196, 0.3);
+  color: #00f5c4;
+  border-radius: 1px;
+  background: rgba(0, 245, 196, 0.05);
+}
 
-    /* Title */
-    #projects .pc-title {
-      font-family: 'Orbitron', monospace;
-      font-size: clamp(14px, 2vw, 20px);
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: 1px;
-      line-height: 1.25;
-      margin: 0;
-    }
+/* Title */
+#projects .pc-title {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(14px, 2vw, 20px);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 1px;
+  line-height: 1.25;
+  margin: 0;
+}
 
-    /* Description */
-    #projects .pc-desc {
-      font-size: 13.5px;
-      line-height: 1.75;
-      color: rgba(195, 215, 230, 0.72);
-      flex: 1;
-      font-family: 'Rajdhani', sans-serif;
-    }
+/* Description */
+#projects .pc-desc {
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: rgba(195, 215, 230, 0.8);
+  flex: 1;
+  font-family: 'Rajdhani', sans-serif;
+}
 
-    /* Footer area */
-    #projects .pc-footer {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-top: auto;
-    }
+/* Footer area */
+#projects .pc-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: auto;
+}
 
-    /* Tech pills */
-    #projects .pc-tech {
-      display: flex;
-      gap: 7px;
-      flex-wrap: wrap;
-    }
+/* Tech pills */
+#projects .pc-tech {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+}
 
-    #projects .pc-tech span {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 10px;
-      color: rgba(150, 180, 200, 0.65);
-      background: rgba(255, 255, 255, 0.04);
-      padding: 3px 8px;
-      border-radius: 1px;
-      border: 1px solid rgba(255, 255, 255, 0.07);
-    }
+#projects .pc-tech span {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  color: rgba(150, 180, 200, 0.75);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 3px 8px;
+  border-radius: 1px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
 
-    /* Link buttons row */
-    #projects .pc-links {
-      display: flex;
-      gap: 9px;
-      flex-wrap: wrap;
-    }
+/* Link buttons row */
+#projects .pc-links {
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+}
 
-    #projects .pc-link {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 1.5px;
-      text-decoration: none;
-      padding: 7px 14px;
-      border-radius: 1px;
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      line-height: 1;
-    }
+#projects .pc-link {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-decoration: none;
+  padding: 7px 14px;
+  border-radius: 1px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  line-height: 1;
+}
 
-    #projects .pc-link.github {
-      border: 1px solid rgba(0, 245, 196, 0.4);
-      color: #00f5c4;
-      background: rgba(0, 245, 196, 0.06);
-    }
+#projects .pc-link.github {
+  border: 1px solid rgba(0, 245, 196, 0.4);
+  color: #00f5c4;
+  background: rgba(0, 245, 196, 0.06);
+}
 
-    #projects .pc-link.github:hover {
-      background: rgba(0, 245, 196, 0.15);
-      border-color: #00f5c4;
-      box-shadow: 0 0 14px rgba(0, 245, 196, 0.18);
-    }
+#projects .pc-link.github:hover {
+  background: rgba(0, 245, 196, 0.15);
+  border-color: #00f5c4;
+  box-shadow: 0 0 14px rgba(0, 245, 196, 0.18);
+}
 
-    #projects .pc-link.visit {
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      color: rgba(195, 215, 230, 0.75);
-      background: rgba(255, 255, 255, 0.03);
-    }
+#projects .pc-link.visit {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(195, 215, 230, 0.8);
+  background: rgba(255, 255, 255, 0.04);
+}
 
-    #projects .pc-link.visit:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.32);
-      color: #fff;
-    }
+#projects .pc-link.visit:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.32);
+  color: #fff;
+}
 
-    #projects .pc-link i {
-      font-size: 11px;
-    }
+#projects .pc-link i {
+  font-size: 11px;
+}
 
-    /* Corner brackets */
-    #projects .pc-corners span {
-      position: absolute;
-      width: 14px;
-      height: 14px;
-      z-index: 5;
-      border-color: #00f5c4;
-      border-style: solid;
-      opacity: 0.5;
-      transition: opacity 0.3s;
-    }
+/* Corner brackets */
+#projects .pc-corners span {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  z-index: 5;
+  border-color: #00f5c4;
+  border-style: solid;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
 
-    #projects .project-card:hover .pc-corners span {
-      opacity: 1;
-    }
+#projects .project-card:hover .pc-corners span {
+  opacity: 1;
+}
 
-    #projects .hc.tl { top: 0; left: 0; border-width: 1.5px 0 0 1.5px; }
-    #projects .hc.tr { top: 0; right: 0; border-width: 1.5px 1.5px 0 0; }
-    #projects .hc.bl { bottom: 0; left: 0; border-width: 0 0 1.5px 1.5px; }
-    #projects .hc.br { bottom: 0; right: 0; border-width: 0 1.5px 1.5px 0; }
+#projects .hc.tl { top: 0; left: 0; border-width: 1.5px 0 0 1.5px; }
+#projects .hc.tr { top: 0; right: 0; border-width: 1.5px 1.5px 0 0; }
+#projects .hc.bl { bottom: 0; left: 0; border-width: 0 0 1.5px 1.5px; }
+#projects .hc.br { bottom: 0; right: 0; border-width: 0 1.5px 1.5px 0; }
 
-    /* Remove old pc-glow if present */
-    #projects .pc-glow { display: none; }
+/* Remove old glow */
+#projects .pc-glow { display: none; }
 
-    /* Responsive */
-    @media (max-width: 700px) {
-      #projects .projects-grid {
-        grid-template-columns: 1fr;
-      }
-      #projects .pc-wide {
-        flex-direction: column;
-        min-height: 360px;
-      }
-      #projects .pc-wide .pc-body {
-        max-width: 100%;
-      }
-      #projects .pc-wide .pc-num {
-        top: 16px;
-        transform: none;
-        right: 16px;
-        font-size: 60px;
-      }
-      #projects .pc-wide-img,
-      #projects .pc-wide-img-overlay {
-        width: 100%;
-      }
-    }
+/* Responsive */
+@media (max-width: 700px) {
+  #projects .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #projects .pc-wide {
+    flex-direction: column;
+    min-height: 360px;
+  }
+
+  #projects .pc-wide .pc-body {
+    max-width: 100%;
+  }
+
+  #projects .pc-wide .pc-num {
+    top: 16px;
+    transform: none;
+    right: 16px;
+    font-size: 60px;
+  }
+
+  #projects .pc-wide-img,
+  #projects .pc-wide-img-overlay {
+    width: 100%;
+  }
+}
   </style>
 </head>
 <body>
@@ -662,7 +679,7 @@
           <!-- Featured badge -->
           <div class="pc-badge">★ THESIS PROJECT</div>
           <!-- Ghost number -->
-          <div class="pc-num">01</div>
+          <div class="pc-num"></div>
           <div class="pc-body" style="margin-top: 28px;">
             <div class="pc-tags">
               <span>GAME DEV</span><span>THESIS</span><span>2D RPG</span>
