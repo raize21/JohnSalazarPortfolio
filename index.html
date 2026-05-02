@@ -430,46 +430,89 @@
           </div>
         </div>
 
-        <div class="contact-right" data-reveal>
-          <div class="cr-terminal">
-            <div class="att-bar">
-              <span class="attb-dot red"></span>
-              <span class="attb-dot yellow"></span>
-              <span class="attb-dot green"></span>
-              <span class="attb-title">send_message.exe — TRANSMIT</span>
-            </div>
-           <div id="formSuccess" class="cf-success" style="display:none;">
-  ✓ MESSAGE TRANSMITTED SUCCESSFULLY!
-</div>
-<form class="cr-form" id="contactForm" 
-      action="https://formspree.io/f/meenqvjw" 
-      method="POST" 
-      novalidate>
-  <div class="cf-group">
-    <label>// NAME</label>
-    <input type="text" name="name" placeholder="ENTER_NAME" required>
-  </div>
-  <div class="cf-group">
-    <label>// EMAIL</label>
-    <input type="email" name="email" placeholder="ENTER_EMAIL" required>
-  </div>
-  <div class="cf-group">
-    <label>// SUBJECT</label>
-    <input type="text" name="subject" placeholder="ENTER_SUBJECT">
-  </div>
-  <div class="cf-group">
-    <label>// MESSAGE</label>
-    <textarea name="message" rows="4" placeholder="ENTER_MESSAGE..." required></textarea>
-  </div>
-  <button type="submit" id="submitText" class="cyber-btn primary">
-    <span class="cb-text">TRANSMIT_MESSAGE.exe</span>
-  </button>
-</form>
-          </div>
-        </div>
-      </div>
+  <div class="contact-right" data-reveal>
+  <div class="cr-terminal">
+    
+    <div class="att-bar">
+      <span class="attb-dot red"></span>
+      <span class="attb-dot yellow"></span>
+      <span class="attb-dot green"></span>
+      <span class="attb-title">send_message.exe — TRANSMIT</span>
     </div>
-  </section>
+
+    <div id="formSuccess" class="cf-success" style="display:none;">
+      ✓ MESSAGE TRANSMITTED SUCCESSFULLY!
+    </div>
+
+    <form class="cr-form" id="contactForm"
+          action="https://formspree.io/f/meenqvjw"
+          method="POST"
+          novalidate>
+
+      <div class="cf-group">
+        <label>// NAME</label>
+        <input type="text" name="name" placeholder="ENTER_NAME">
+      </div>
+
+      <div class="cf-group">
+        <label>// EMAIL</label>
+        <input type="email" name="email" placeholder="ENTER_EMAIL">
+      </div>
+
+      <div class="cf-group">
+        <label>// SUBJECT</label>
+        <input type="text" name="subject" placeholder="ENTER_SUBJECT">
+      </div>
+
+      <div class="cf-group">
+        <label>// MESSAGE</label>
+        <textarea name="message" rows="4" placeholder="ENTER_MESSAGE..."></textarea>
+      </div>
+
+      <button type="submit" id="submitText" class="cyber-btn primary">
+        <span class="cb-text">TRANSMIT_MESSAGE.exe</span>
+      </button>
+    </form>
+
+  </div>
+</div>
+
+<script>
+document.getElementById("contactForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const form = this;
+  const name = form.name.value.trim();
+  const email = form.email.value.trim();
+  const message = form.message.value.trim();
+
+  // Custom validation
+  if (!name || !email || !message) {
+    alert("Please fill in NAME, EMAIL, and MESSAGE.");
+    return;
+  }
+
+  try {
+    const response = await fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      form.reset();
+      document.getElementById("formSuccess").style.display = "block";
+    } else {
+      alert("Something went wrong. Please try again.");
+    }
+
+  } catch (error) {
+    alert("Network error. Please try again.");
+  }
+});
+</script>
 
   <!-- FOOTER -->
   <footer>
