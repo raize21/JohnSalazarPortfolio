@@ -96,15 +96,22 @@
 
 /* Gradient overlay (lighter so image shows) */
 #projects .pc-gradient {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
   background: linear-gradient(
     135deg,
-    rgba(2,4,8,0.75) 0%,
-    rgba(2,4,8,0.45) 55%,
-    rgba(2,4,8,0.7) 100%
+    rgba(2,4,8,0.55) 0%,
+    rgba(2,4,8,0.25) 55%,
+    rgba(2,4,8,0.5) 100%
   );
+}
+#projects .pc-wide-img-overlay {
+  background: linear-gradient(
+    90deg,
+    rgba(2, 4, 8, 0.45),
+    rgba(2, 4, 8, 0.05)
+  );
+}
+#projects .pc-wide-img {
+  filter: brightness(1.2) contrast(1.15) saturate(1.15);
 }
 
 /* Scanline effect (softened) */
