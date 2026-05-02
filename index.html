@@ -8,6 +8,323 @@
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="style.css">
+
+  <!-- ── PROJECTS SECTION OVERRIDE STYLES ── -->
+  <style>
+    /* ─── Reset project card styles from style.css ─── */
+    #projects .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    #projects .project-card {
+      position: relative;
+      border-radius: 2px;
+      overflow: hidden;
+      cursor: default;
+      border: 1px solid rgba(0, 245, 196, 0.12);
+      transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+      background: #0a0e16;
+      min-height: 340px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #projects .project-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0, 245, 196, 0.5);
+      box-shadow: 0 12px 40px rgba(0, 245, 196, 0.08);
+    }
+
+    #projects .pc-wide {
+      grid-column: 1 / -1;
+      min-height: 400px;
+      flex-direction: row;
+    }
+
+    /* Background image layer */
+    #projects .pc-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.6s ease, opacity 0.6s ease;
+      opacity: 0.25;
+    }
+
+    #projects .project-card:hover .pc-bg {
+      transform: scale(1.05);
+      opacity: 0.38;
+    }
+
+    /* Wide card image strip (right side) */
+    #projects .pc-wide-img {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 50%;
+      z-index: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0.28;
+      transition: opacity 0.6s ease;
+    }
+
+    #projects .project-card:hover .pc-wide-img {
+      opacity: 0.42;
+    }
+
+    #projects .pc-wide-img-overlay {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 50%;
+      z-index: 1;
+      background: linear-gradient(90deg, #020408 0%, rgba(2, 4, 8, 0.15) 100%);
+    }
+
+    /* Gradient overlay for standard cards */
+    #projects .pc-gradient {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(135deg, rgba(2,4,8,0.95) 0%, rgba(2,4,8,0.65) 55%, rgba(2,4,8,0.88) 100%);
+    }
+
+    /* Scanline effect */
+    #projects .pc-scan {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.025) 2px,
+        rgba(0, 0, 0, 0.025) 4px
+      );
+      pointer-events: none;
+    }
+
+    /* Ghost number */
+    #projects .pc-num {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      font-family: 'Orbitron', monospace;
+      font-size: 72px;
+      font-weight: 900;
+      color: rgba(0, 245, 196, 0.055);
+      z-index: 3;
+      line-height: 1;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    #projects .pc-wide .pc-num {
+      right: 28px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 110px;
+    }
+
+    /* Body content */
+    #projects .pc-body {
+      position: relative;
+      z-index: 4;
+      padding: 30px 28px 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+      flex: 1;
+    }
+
+    #projects .pc-wide .pc-body {
+      max-width: 52%;
+    }
+
+    /* Featured badge */
+    #projects .pc-badge {
+      position: absolute;
+      top: 18px;
+      left: 24px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: #000;
+      background: #00f5c4;
+      padding: 4px 10px;
+      z-index: 5;
+      border-radius: 1px;
+      font-weight: 700;
+    }
+
+    /* Tags */
+    #projects .pc-tags {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    #projects .pc-tags span {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 2px;
+      padding: 3px 9px;
+      border: 1px solid rgba(0, 245, 196, 0.3);
+      color: #00f5c4;
+      border-radius: 1px;
+      background: rgba(0, 245, 196, 0.05);
+    }
+
+    /* Title */
+    #projects .pc-title {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(14px, 2vw, 20px);
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 1px;
+      line-height: 1.25;
+      margin: 0;
+    }
+
+    /* Description */
+    #projects .pc-desc {
+      font-size: 13.5px;
+      line-height: 1.75;
+      color: rgba(195, 215, 230, 0.72);
+      flex: 1;
+      font-family: 'Rajdhani', sans-serif;
+    }
+
+    /* Footer area */
+    #projects .pc-footer {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: auto;
+    }
+
+    /* Tech pills */
+    #projects .pc-tech {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+
+    #projects .pc-tech span {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      color: rgba(150, 180, 200, 0.65);
+      background: rgba(255, 255, 255, 0.04);
+      padding: 3px 8px;
+      border-radius: 1px;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    /* Link buttons row */
+    #projects .pc-links {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+    }
+
+    #projects .pc-link {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-decoration: none;
+      padding: 7px 14px;
+      border-radius: 1px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    #projects .pc-link.github {
+      border: 1px solid rgba(0, 245, 196, 0.4);
+      color: #00f5c4;
+      background: rgba(0, 245, 196, 0.06);
+    }
+
+    #projects .pc-link.github:hover {
+      background: rgba(0, 245, 196, 0.15);
+      border-color: #00f5c4;
+      box-shadow: 0 0 14px rgba(0, 245, 196, 0.18);
+    }
+
+    #projects .pc-link.visit {
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: rgba(195, 215, 230, 0.75);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    #projects .pc-link.visit:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.32);
+      color: #fff;
+    }
+
+    #projects .pc-link i {
+      font-size: 11px;
+    }
+
+    /* Corner brackets */
+    #projects .pc-corners span {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      z-index: 5;
+      border-color: #00f5c4;
+      border-style: solid;
+      opacity: 0.5;
+      transition: opacity 0.3s;
+    }
+
+    #projects .project-card:hover .pc-corners span {
+      opacity: 1;
+    }
+
+    #projects .hc.tl { top: 0; left: 0; border-width: 1.5px 0 0 1.5px; }
+    #projects .hc.tr { top: 0; right: 0; border-width: 1.5px 1.5px 0 0; }
+    #projects .hc.bl { bottom: 0; left: 0; border-width: 0 0 1.5px 1.5px; }
+    #projects .hc.br { bottom: 0; right: 0; border-width: 0 1.5px 1.5px 0; }
+
+    /* Remove old pc-glow if present */
+    #projects .pc-glow { display: none; }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      #projects .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      #projects .pc-wide {
+        flex-direction: column;
+        min-height: 360px;
+      }
+      #projects .pc-wide .pc-body {
+        max-width: 100%;
+      }
+      #projects .pc-wide .pc-num {
+        top: 16px;
+        transform: none;
+        right: 16px;
+        font-size: 60px;
+      }
+      #projects .pc-wide-img,
+      #projects .pc-wide-img-overlay {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- BOOT SCREEN -->
@@ -128,7 +445,7 @@
         <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/john-albert-salazar-707314360/" class="hs-link" data-tooltip="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         <a target="_blank" rel="noopener noreferrer" href="https://github.com/raize21" class="hs-link" data-tooltip="GitHub"><i class="fa-brands fa-github"></i></a>
         <a target="_blank" rel="noopener noreferrer" href="https://web.facebook.com/profile.php?id=61572164355787" class="hs-link" data-tooltip="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-        <a  target="_blank" rel="noopener noreferrer" href="#" class="hs-link" data-tooltip="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+        <a target="_blank" rel="noopener noreferrer" href="#" class="hs-link" data-tooltip="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
       </div>
     </div>
 
@@ -249,7 +566,6 @@
           </div>
           <div class="sc-corner tl"></div><div class="sc-corner br"></div>
         </div>
-        <!-- Hex grid additional node -->
         <div class="skill-card skill-stat-card" data-reveal>
           <div class="stat-grid">
             <div class="sg-item"><div class="sg-num" id="proj-count">0</div><div class="sg-label">PROJECTS</div></div>
@@ -332,60 +648,144 @@
         <h2 class="section-title">FEATURED<span class="accent">PROJECTS</span></h2>
         <div class="sh-underline"></div>
       </div>
+
       <div class="projects-grid">
+
+        <!-- ── 01: Kingdom of Words — WIDE HERO ── -->
         <div class="project-card pc-wide" data-reveal>
+          <!-- Right-side image strip -->
+          <div class="pc-wide-img" style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?w=900&q=80');"></div>
+          <div class="pc-wide-img-overlay"></div>
+          <!-- Scanline + gradient over left text area -->
+          <div class="pc-gradient"></div>
+          <div class="pc-scan"></div>
+          <!-- Featured badge -->
+          <div class="pc-badge">★ THESIS PROJECT</div>
+          <!-- Ghost number -->
           <div class="pc-num">01</div>
-          <div class="pc-body">
-            <div class="pc-tags"><span>GAME DEV</span><span>THESIS</span><span>2D RPG</span></div>
+          <div class="pc-body" style="margin-top: 28px;">
+            <div class="pc-tags">
+              <span>GAME DEV</span><span>THESIS</span><span>2D RPG</span>
+            </div>
             <h3 class="pc-title">Kingdom of Words</h3>
             <p class="pc-desc">A 2D RPG adventure game for learning the French language — combining narrative gameplay with vocabulary challenges. Built as capstone thesis for WVSU. Players explore dungeons, battle enemies using French vocab, and unlock story progression.</p>
             <div class="pc-footer">
-              <div class="pc-tech"><span>GDScript</span><span>Godot</span><span>SQLite</span></div>
-              <a  target="_blank" rel="noopener noreferrer" href="https://github.com/raize21/Kingdom-of-Words-A-2D-RPG-Game-For-Learning-French-Language" class="pc-link">ACCESS_FILE <i class="fa-solid fa-arrow-right"></i></a>
+              <div class="pc-tech">
+                <span>GDScript</span><span>Godot</span><span>SQLite</span>
+              </div>
+              <div class="pc-links">
+                <a class="pc-link github" href="https://github.com/raize21/Kingdom-of-Words-A-2D-RPG-Game-For-Learning-French-Language" target="_blank" rel="noopener noreferrer">
+                  <i class="fa-brands fa-github"></i> GITHUB
+                </a>
+                <a class="pc-link visit" href="#" target="_blank" rel="noopener noreferrer">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> LIVE DEMO
+                </a>
+              </div>
             </div>
           </div>
           <div class="pc-corners">
             <span class="hc tl"></span><span class="hc tr"></span>
             <span class="hc bl"></span><span class="hc br"></span>
           </div>
-          <div class="pc-glow"></div>
         </div>
 
+        <!-- ── 02: Bakeshop Sales & Inventory ── -->
         <div class="project-card" data-reveal>
+          <div class="pc-bg" style="background-image: url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80');"></div>
+          <div class="pc-gradient"></div>
+          <div class="pc-scan"></div>
           <div class="pc-num">02</div>
           <div class="pc-body">
-            <div class="pc-tags"><span>PHP</span><span>MySQL</span><span>POS</span></div>
+            <div class="pc-tags">
+              <span>PHP</span><span>MySQL</span><span>POS</span>
+            </div>
             <h3 class="pc-title">Bakeshop Sales &amp; Inventory</h3>
             <p class="pc-desc">Complete POS and inventory management system for small bakeshops. Real-time stock tracking, sales reports, user management with role-based access control.</p>
             <div class="pc-footer">
-              <div class="pc-tech"><span>PHP</span><span>MySQL</span><span>Bootstrap</span></div>
-              <a href="#" class="pc-link">ACCESS_FILE <i class="fa-solid fa-arrow-right"></i></a>
+              <div class="pc-tech">
+                <span>PHP</span><span>MySQL</span><span>Bootstrap</span>
+              </div>
+              <div class="pc-links">
+                <a class="pc-link github" href="#" target="_blank" rel="noopener noreferrer">
+                  <i class="fa-brands fa-github"></i> GITHUB
+                </a>
+                <a class="pc-link visit" href="#" target="_blank" rel="noopener noreferrer">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> LIVE DEMO
+                </a>
+              </div>
             </div>
           </div>
           <div class="pc-corners">
             <span class="hc tl"></span><span class="hc tr"></span>
             <span class="hc bl"></span><span class="hc br"></span>
           </div>
-          <div class="pc-glow"></div>
         </div>
 
+        <!-- ── 03: Travel Website ── -->
         <div class="project-card" data-reveal>
+          <div class="pc-bg" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80');"></div>
+          <div class="pc-gradient"></div>
+          <div class="pc-scan"></div>
           <div class="pc-num">03</div>
           <div class="pc-body">
-            <div class="pc-tags"><span>HTML</span><span>CSS</span><span>JS</span></div>
-            <h3 class="pc-title">Travel Website</h3>
+            <div class="pc-tags">
+              <span>HTML</span><span>CSS</span><span>JS</span>
+            </div>
+            <h3 class="pc-title">WanderLust Travel</h3>
             <p class="pc-desc">Modern, fully responsive travel booking website with animated sections, destination gallery, interactive booking flow and multi-step reservation system.</p>
             <div class="pc-footer">
-              <div class="pc-tech"><span>HTML5</span><span>CSS3</span><span>JavaScript</span></div>
-              <a target="_blank" rel="noopener noreferrer" href="https://github.com/raize21/Travel-Website-WanderLust" class="pc-link">ACCESS_FILE <i class="fa-solid fa-arrow-right"></i></a>
+              <div class="pc-tech">
+                <span>HTML5</span><span>CSS3</span><span>JavaScript</span>
+              </div>
+              <div class="pc-links">
+                <a class="pc-link github" href="https://github.com/raize21/Travel-Website-WanderLust" target="_blank" rel="noopener noreferrer">
+                  <i class="fa-brands fa-github"></i> GITHUB
+                </a>
+                <a class="pc-link visit" href="#" target="_blank" rel="noopener noreferrer">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> LIVE DEMO
+                </a>
+              </div>
             </div>
           </div>
           <div class="pc-corners">
             <span class="hc tl"></span><span class="hc tr"></span>
             <span class="hc bl"></span><span class="hc br"></span>
           </div>
-          <div class="pc-glow"></div>
         </div>
+
+        <!-- ── 04: J.A. BarberShop — WIDE HERO ── -->
+        <div class="project-card pc-wide" data-reveal>
+          <div class="pc-wide-img" style="background-image: url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=900&q=80');"></div>
+          <div class="pc-wide-img-overlay"></div>
+          <div class="pc-gradient"></div>
+          <div class="pc-scan"></div>
+          <div class="pc-num">04</div>
+          <div class="pc-body">
+            <div class="pc-tags">
+              <span>WEB APP</span><span>BOOKING</span><span>BARBERSHOP</span>
+            </div>
+            <h3 class="pc-title">J.A. BarberShop</h3>
+            <p class="pc-desc">Modern barbershop web application featuring online appointment booking, service catalog, barber profiles, and a sleek landing page. Designed to streamline customer experience and barbershop management from end to end.</p>
+            <div class="pc-footer">
+              <div class="pc-tech">
+                <span>HTML5</span><span>CSS3</span><span>JavaScript</span>
+              </div>
+              <div class="pc-links">
+                <a class="pc-link github" href="#" target="_blank" rel="noopener noreferrer">
+                  <i class="fa-brands fa-github"></i> GITHUB
+                </a>
+                <a class="pc-link visit" href="#" target="_blank" rel="noopener noreferrer">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> LIVE DEMO
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="pc-corners">
+            <span class="hc tl"></span><span class="hc tr"></span>
+            <span class="hc bl"></span><span class="hc br"></span>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -430,89 +830,53 @@
           </div>
         </div>
 
-  <div class="contact-right" data-reveal>
-  <div class="cr-terminal">
-    
-    <div class="att-bar">
-      <span class="attb-dot red"></span>
-      <span class="attb-dot yellow"></span>
-      <span class="attb-dot green"></span>
-      <span class="attb-title">send_message.exe — TRANSMIT</span>
+        <div class="contact-right" data-reveal>
+          <div class="cr-terminal">
+            <div class="att-bar">
+              <span class="attb-dot red"></span>
+              <span class="attb-dot yellow"></span>
+              <span class="attb-dot green"></span>
+              <span class="attb-title">send_message.exe — TRANSMIT</span>
+            </div>
+
+            <div id="formSuccess" class="cf-success" style="display:none;">
+              ✓ MESSAGE TRANSMITTED SUCCESSFULLY!
+            </div>
+
+            <form class="cr-form" id="contactForm"
+                  action="https://formspree.io/f/meenqvjw"
+                  method="POST"
+                  novalidate>
+
+              <div class="cf-group">
+                <label>// NAME</label>
+                <input type="text" name="name" placeholder="ENTER_NAME">
+              </div>
+
+              <div class="cf-group">
+                <label>// EMAIL</label>
+                <input type="email" name="email" placeholder="ENTER_EMAIL">
+              </div>
+
+              <div class="cf-group">
+                <label>// SUBJECT</label>
+                <input type="text" name="subject" placeholder="ENTER_SUBJECT">
+              </div>
+
+              <div class="cf-group">
+                <label>// MESSAGE</label>
+                <textarea name="message" rows="4" placeholder="ENTER_MESSAGE..."></textarea>
+              </div>
+
+              <button type="submit" id="submitText" class="cyber-btn primary">
+                <span class="cb-text">TRANSMIT_MESSAGE.exe</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div id="formSuccess" class="cf-success" style="display:none;">
-      ✓ MESSAGE TRANSMITTED SUCCESSFULLY!
-    </div>
-
-    <form class="cr-form" id="contactForm"
-          action="https://formspree.io/f/meenqvjw"
-          method="POST"
-          novalidate>
-
-      <div class="cf-group">
-        <label>// NAME</label>
-        <input type="text" name="name" placeholder="ENTER_NAME">
-      </div>
-
-      <div class="cf-group">
-        <label>// EMAIL</label>
-        <input type="email" name="email" placeholder="ENTER_EMAIL">
-      </div>
-
-      <div class="cf-group">
-        <label>// SUBJECT</label>
-        <input type="text" name="subject" placeholder="ENTER_SUBJECT">
-      </div>
-
-      <div class="cf-group">
-        <label>// MESSAGE</label>
-        <textarea name="message" rows="4" placeholder="ENTER_MESSAGE..."></textarea>
-      </div>
-
-      <button type="submit" id="submitText" class="cyber-btn primary">
-        <span class="cb-text">TRANSMIT_MESSAGE.exe</span>
-      </button>
-    </form>
-
-  </div>
-</div>
-
-<script>
-document.getElementById("contactForm").addEventListener("submit", async function(e) {
-  e.preventDefault();
-
-  const form = this;
-  const name = form.name.value.trim();
-  const email = form.email.value.trim();
-  const message = form.message.value.trim();
-
-  // Custom validation
-  if (!name || !email || !message) {
-    alert("Please fill in NAME, EMAIL, and MESSAGE.");
-    return;
-  }
-
-  try {
-    const response = await fetch(form.action, {
-      method: "POST",
-      body: new FormData(form),
-      headers: {
-        'Accept': 'application/json'
-      }
-    });
-
-    if (response.ok) {
-      form.reset();
-      document.getElementById("formSuccess").style.display = "block";
-    } else {
-      alert("Something went wrong. Please try again.");
-    }
-
-  } catch (error) {
-    alert("Network error. Please try again.");
-  }
-});
-</script>
+  </section>
 
   <!-- FOOTER -->
   <footer>
@@ -522,15 +886,44 @@ document.getElementById("contactForm").addEventListener("submit", async function
     </div>
     <div class="ft-right">
       <div class="ft-socials">
-        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-        <a href="#"><i class="fa-brands fa-github"></i></a>
-        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://www.linkedin.com/in/john-albert-salazar-707314360/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://github.com/raize21" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+        <a href="https://web.facebook.com/profile.php?id=61572164355787" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook-f"></i></a>
       </div>
       <button class="ft-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
         <i class="fa-solid fa-chevron-up"></i>
       </button>
     </div>
   </footer>
+
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const form = this;
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const message = form.message.value.trim();
+      if (!name || !email || !message) {
+        alert("Please fill in NAME, EMAIL, and MESSAGE.");
+        return;
+      }
+      try {
+        const response = await fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (response.ok) {
+          form.reset();
+          document.getElementById("formSuccess").style.display = "block";
+        } else {
+          alert("Something went wrong. Please try again.");
+        }
+      } catch (error) {
+        alert("Network error. Please try again.");
+      }
+    });
+  </script>
 
   <script src="script.js"></script>
 </body>
